@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДЗ5</title>
+    <style type="text/css">
+		li{
+			font-size: 30px;
+		}
+		li:hover{
+			color: gold;
+			cursor: pointer;
+		}
+        .cell{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            display: flex;
+            align-items:center;
+        }
+        p {
+            margin: auto;
+        }
+        .board{
+            margin: 0 auto 0 auto;
+            width: 440px;
+            height: 440px;
+            background-color: rgb(212, 164, 100);
+            display: grid;
+            grid-template-columns: 20px 50px 50px 50px 50px 50px 50px 50px 50px 20px;
+            grid-template-rows: 20px 50px 50px 50px 50px 50px 50px 50px 50px 20px;
+            
+        }
+        
+        .black{
+            background-color: black;
+        }
+        .white{
+            background-color: blanchedalmond;
+        }
+
+        .basket{
+            width: 800px;
+            height: 500px;
+            margin: 0 auto 0 auto;
+            background-color: rgb(219, 211, 203);
+        }
+	</style>
+</head>
+<body>
+    <div>
+		<ol>
+			<li onclick="getBoard()"> Шахматная доска</li>
+			<li onclick="getBasket()"> Корзина </li>
+			<li onclick=""> Каталог </li>
+			
+		</ol>
+    </div>
+    <div id="board"></div>
+	<script src="sc.js"></script>    
+</body>
+</html>
