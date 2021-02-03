@@ -61,7 +61,41 @@ function getBasket() {  //создание окна корзины
       
     });
 }   
-          
+
+function catalog() { // созадние окна каталога
+    
+    let board = document.getElementById('board');
+    board.className = 'catalog';
+    board.innerHTML = ` `;
+    let y = Math.floor(Math.random() * (4) );
+    for (let a = y; a < y+4; a++){
+        let productMarkup = `   
+        <div class="product-cont-elem">
+            <img src="${catalogis.segments[a].img}" alt="">
+            <div class="product-cont-elem-img">
+                <div class="product-cont-elem-img-1" data="${a}">
+                    <img src="img/forma_1_copy_1287.png" alt="">
+                    <p>Add to Cart</p>
+                </div>
+            </div>
+            <div class="product-cont-elem-text">
+                <p class="product-cont-img-p1">${catalogis.segments[a].title}</p>
+                <p class="product-cont-img-p2">$${catalogis.segments[a].price}</p>
+            </div>
+        </div>
+        `;          // разметка каталога
+        
+        board.insertAdjacentHTML("beforeend", productMarkup);
+
+    }
+    const butt = document.getElementsByClassName('product-cont-elem-img-1'); //
+    
+    for (let i=0; i< butt.length; i++) {   
+        butt[i].addEventListener('click', myClickToBasket);   // вешаем слушатель на кнопки по клику
+      
+    };
+}
+
 class Basket {  // корзина
     constructor() {
         this.segments = [];
@@ -99,7 +133,7 @@ class Basket {  // корзина
             quantity += this.segments[i].quantity;
         }
         let board = document.getElementById('total');
-        console.log(board);
+        
         board.innerHTML = `В корзине: ${quantity} товаров на сумму ${total} рублей`;
     }
 } 
@@ -115,17 +149,16 @@ class Product {  // продукт
 let basket = new Basket();  //создаем корзину 
 
 function  myCompl(e) {     // клик по кнопкам
-    console.log(e.target.getAttribute('data-some'));
+    //console.log(e.target.getAttribute('data-some'));
     if (e.target.getAttribute('data-some')== "fill"){ //наполнение корзины
-        console.log("наполнить");
+        //console.log("наполнить");
         basket.completion();
-        console.log(basket.segments);
         basket.renderingBasket()
         basket.countBasketPrice();
     }
     
     if (e.target.getAttribute('data-some')== "clear"){ //очистка корзины
-        console.log("очистить");
+        //console.log("очистить");
         basket.segments=[];
         let board = document.getElementById('basket');
         board.innerHTML = ` `;
@@ -134,6 +167,37 @@ function  myCompl(e) {     // клик по кнопкам
         //getBasket();
     }
 }
-           
-         
-    
+
+let catalogis = {
+    segments: [
+        {img: "img/rectangle_1.jpg",
+            title: "rrrrr1",
+            price: 200 },
+        {img: "img/rectangle_2.jpg",
+            title: "ytut2",
+            price: 300 },
+        {img: "img/rectangle_3.jpg",
+            title: "fgh3",
+            price: 400 },
+        {img: "img/rectangle_4.jpg",
+            title: "ghjrr4",
+            price: 500 },
+        {img: "img/rectangle_5.jpg",
+            title: "rrrrr5",
+            price: 600 },
+        {img: "img/rectangle_6.jpg",
+            title: "rrrrr6",
+            price: 700 },
+        {img: "img/rectangle_7.jpg",
+            title: "rrrrr7",
+            price: 800 },
+        {img:"img/rectangle_8.jpg",
+            title: "rrrrr8",
+            price: 900 },
+    ]
+};
+
+       
+  function myClickToBasket(params) {
+    console.log('catalogis  '+this.getAttribute('data'));
+  }  

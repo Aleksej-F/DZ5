@@ -4,96 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ДЗ5</title>
-    <style type="text/css">
-		li{
-			font-size: 30px;
-		}
-		li:hover{
-			color: gold;
-			cursor: pointer;
-		}
-        .cell{
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            display: flex;
-            align-items:center;
-        }
-        p {
-            margin: auto;
-        }
-        .board{
-            margin: 0 auto 0 auto;
-            width: 440px;
-            height: 440px;
-            background-color: rgb(212, 164, 100);
-            display: grid;
-            grid-template-columns: 20px 50px 50px 50px 50px 50px 50px 50px 50px 20px;
-            grid-template-rows: 20px 50px 50px 50px 50px 50px 50px 50px 50px 20px;
-            
-        }
-        
-        .black{
-            background-color: black;
-        }
-        .white{
-            background-color: blanchedalmond;
-        }
-
-        .basketwin{
-            width: 800px;
-            
-            margin: 0 auto 0 auto;
-            background-color: rgb(219, 211, 203);
-            
-        }
-        #basket{
-            width: 800px;
-            min-height: 50px;
-            margin: 0 auto 0 auto;
-            background-color: rgb(219, 211, 203);
-            
-        }
-        .product{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 10px 0 10px 0;
-        }
-        .productzagl{
-            width: 800px;
-            margin: 0 auto 0 auto;
-            background-color: rgb(224, 196, 167);
-        }
-        .product div{
-            flex: 3 1 80px;
-            text-align: center;
-        }
-        .productnav{
-            width: 800px;
-            height: 50px;
-            margin: 0 auto 0 auto;
-            background-color: rgb(224, 196, 167);
-        }
-        .butt{
-            display: flex;
-            justify-content: flex-end;
-        }
-        #total{
-            padding-left: 30px;
-        }
-        .butt button{
-            margin-right: 30px;
-            cursor: pointer;
-        }
-	</style>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <div>
 		<ol>
 			<li onclick="getBoard()"> Шахматная доска</li>
 			<li onclick="getBasket()"> Корзина </li>
-			<li onclick=""> Каталог </li>
+			<li onclick="catalog()"> Каталог </li>
 			
 		</ol>
     </div>
