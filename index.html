@@ -40,11 +40,51 @@
             background-color: blanchedalmond;
         }
 
-        .basket{
+        .basketwin{
             width: 800px;
-            height: 500px;
+            
             margin: 0 auto 0 auto;
             background-color: rgb(219, 211, 203);
+            
+        }
+        #basket{
+            width: 800px;
+            min-height: 50px;
+            margin: 0 auto 0 auto;
+            background-color: rgb(219, 211, 203);
+            
+        }
+        .product{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0 10px 0;
+        }
+        .productzagl{
+            width: 800px;
+            margin: 0 auto 0 auto;
+            background-color: rgb(224, 196, 167);
+        }
+        .product div{
+            flex: 3 1 80px;
+            text-align: center;
+        }
+        .productnav{
+            width: 800px;
+            height: 50px;
+            margin: 0 auto 0 auto;
+            background-color: rgb(224, 196, 167);
+        }
+        .butt{
+            display: flex;
+            justify-content: flex-end;
+        }
+        #total{
+            padding-left: 30px;
+        }
+        .butt button{
+            margin-right: 30px;
+            cursor: pointer;
         }
 	</style>
 </head>
@@ -57,7 +97,8 @@
 			
 		</ol>
     </div>
-    <div id="board"></div>
+    
+    <div id="board" ></div>
 	<script src="sc.js"></script>    
 </body>
 </html>

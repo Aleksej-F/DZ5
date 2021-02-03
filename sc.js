@@ -1,6 +1,6 @@
 'use strict';
 
-function getBoard(){
+function getBoard(){ //создание окна шахматной доски
     let board = document.getElementById('board');
     
     board.innerHTML = '';
@@ -34,52 +34,106 @@ function getBoard(){
     } 
 }   
 
-function getBasket() {
+function getBasket() {  //создание окна корзины
     let board = document.getElementById('board');
-    board.className = 'basket';
+    board.className = 'basketwin';
     board.innerHTML = ` `;
-}    
-            
-            
-    class Basket {  // корзина
-        constructor() {
-            this.segments = [];
-        }
-        completion() {  // наполнение корзины
-            let a = Math.floor(Math.random() * (6) + 1); // колличество товаров в корзине
-            let title = ['кросовки', 'тапки', 'футболка', 'джинсы'];
-            for (let i = 0; i < a; i++) {
-                let b = Math.floor(Math.random() * (3));        // выбор товара
-                let c = Math.floor(Math.random() * (10) + 1);   // штук
-                let d = Math.floor(Math.random() * (300) + 50); // цена
-                this.segments.push(new Product(title[b], c, d));
-            }
-        }
-        countBasketPrice(){ // подсчет стоимости товара в корзине
-            let total = 0;
-            for (let i = 0; i<this.segments.length; i++ ){
-                total += this.segments[i].quantity * this.segments[i].price;
-            }
-            return total;
-        }
-    } 
-            
-    class Product {  // продукт
-        constructor(title, quantity, price) {
-            this.title = title;
-            this.quantity = quantity;
-            this.price = price;
+
+    let productMarkup = `   
+        <div class="product productzagl">
+            <div>Наименование</div>
+            <div>Колличество</div>
+            <div>Цена</div>
+        </div>
+        <div id="basket"></div>
+        <div class="productnav">
+            <div id="total">Корзина пуста</div>
+            <div class="butt"><button data-some="fill">Наполнить</button> <button data-some="clear">Очистить</button></div>
+        </div>
+    `;          // разметка корзины
+               
+    board.insertAdjacentHTML("afterbegin", productMarkup);
+    
+    const buttons = document.querySelectorAll('button'); //
+    
+    buttons.forEach(function(button) {   
+        button.addEventListener('click', myCompl);   // вешаем слушатель на кнопки по клику
+      
+    });
+}   
+          
+class Basket {  // корзина
+    constructor() {
+        this.segments = [];
+    }
+    completion() {  // наполнение корзины
+        let a = Math.floor(Math.random() * (6) + 1);     // колличество товаров в корзине
+        let title = ['кросовки', 'тапки', 'футболка', 'джинсы'];
+        for (let i = 0; i < a; i++) {
+            let productName = Math.floor(Math.random() * (3));            // выбор товара
+            let quantity = Math.floor(Math.random() * (10) + 1);         // штук
+            let productPrice = Math.floor(Math.random() * (300) + 50);  // цена
+            this.segments.push(new Product(title[productName], quantity, productPrice));
         }
     }
+    renderingBasket(){  // отрисовка корзины
+        let basket = document.getElementById('basket');
+        basket.innerHTML = '';
+        for (let i = 0; i<this.segments.length; i++ ){
+        let productBasket = `
+            <div class="product">
+            <div>${this.segments[i].title}</div>
+            <div>${this.segments[i].quantity}</div>
+            <div class="price">${this.segments[i].price}</div>
+            </div>
+            `;
             
-           // let basket = new Basket();
-
-          //  basket.completion();
-          //  let total = basket.countBasketPrice();
-         //   console.log(basket);
-         //   console.log(total);
+            basket.insertAdjacentHTML("beforeend", productBasket);
+        }
+    }
+    countBasketPrice(){     // подсчет стоимости товара в корзине
+        let total = 0;
+        let quantity = 0;
+        for (let i = 0; i<this.segments.length; i++ ){
+            total += this.segments[i].quantity * this.segments[i].price;
+            quantity += this.segments[i].quantity;
+        }
+        let board = document.getElementById('total');
+        console.log(board);
+        board.innerHTML = `В корзине: ${quantity} товаров на сумму ${total} рублей`;
+    }
+} 
             
+class Product {  // продукт
+    constructor(title, quantity, price) {
+        this.title = title;
+        this.quantity = quantity;
+        this.price = price;
+    }
+}
+            
+let basket = new Basket();  //создаем корзину 
 
-          //  alert('Общая сумма к оплате  ' + total);
-       
+function  myCompl(e) {     // клик по кнопкам
+    console.log(e.target.getAttribute('data-some'));
+    if (e.target.getAttribute('data-some')== "fill"){ //наполнение корзины
+        console.log("наполнить");
+        basket.completion();
+        console.log(basket.segments);
+        basket.renderingBasket()
+        basket.countBasketPrice();
+    }
+    
+    if (e.target.getAttribute('data-some')== "clear"){ //очистка корзины
+        console.log("очистить");
+        basket.segments=[];
+        let board = document.getElementById('basket');
+        board.innerHTML = ` `;
+        let total = document.getElementById('total');
+        total.innerHTML = `Корзина пуста`;
+        //getBasket();
+    }
+}
+           
+         
     
